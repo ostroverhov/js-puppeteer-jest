@@ -26,13 +26,16 @@ describe('Login in onliner', () => {
         await mainPageSteps.checkProfileLabel();
     });
 
-    it('should get error message', async () => {
+    it.each([
+        [testData.wrongEmail, testData.password],
+        [testData.email, testData.wrongPassword]
+    ])('should get error message with %s and %s', async (email, password) => {
         const mainPageSteps = new MainPageSteps(browser);
         const loginPageSteps = new LoginPageSteps(browser);
         await mainPageSteps.isMainPageOpened();
         await mainPageSteps.clickLoginButton();
         await loginPageSteps.isLoginPageOpened();
-        await loginPageSteps.fillLoginForm(testData.email, testData.wrongPassword);
+        await loginPageSteps.fillLoginForm(email, password);
         await loginPageSteps.clickLoginButton();
         await loginPageSteps.checkErrorMessage();
     });
