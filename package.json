@@ -12,6 +12,7 @@
     "rimraf": "^2.6.3"
   },
   "dependencies": {
-    "chai": "^4.3.4"
+    "chai": "^4.3.4",
+    "googleapis": "^39.2.0"
   }
 }
